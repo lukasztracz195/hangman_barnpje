@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane prefHeight="456.0" prefWidth="701.0" style="-fx-background-color: #424242;" xmlns="http://javafx.com/javafx/8.0.201" xmlns:fx="http://javafx.com/fxml/1" fx:controller="lukasztracz195.barnpjee.chat.client.controller.RegistrationLoginController">
+   <children>
+      <Button fx:id="signInButton" alignment="CENTER" contentDisplay="CENTER" layoutX="140.0" layoutY="175.0" mnemonicParsing="false" onMouseClicked="#switchToRegistration" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #4caf50;" text="Sign In" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="198.0" AnchorPane.leftAnchor="140.0" AnchorPane.rightAnchor="388.0" AnchorPane.topAnchor="175.0">
+         <font>
+            <Font size="32.0" />
+         </font>
+      </Button>
+      <Button fx:id="logInButton" alignment="CENTER" contentDisplay="CENTER" layoutX="385.0" layoutY="175.0" mnemonicParsing="false" onMouseClicked="#switchToLogin" prefHeight="80.0" prefWidth="200.0" style="-fx-background-color: #00b0ff;" text="Log In" AnchorPane.bottomAnchor="201.0" AnchorPane.leftAnchor="385.0" AnchorPane.rightAnchor="116.0" AnchorPane.topAnchor="175.0">
+         <font>
+            <Font size="32.0" />
+         </font></Button>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="118.0" layoutY="76.0" prefHeight="65.0" prefWidth="491.0" text="Chat Application" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="315.0" AnchorPane.leftAnchor="118.0" AnchorPane.rightAnchor="92.0" AnchorPane.topAnchor="76.0">
+         <font>
+            <Font size="43.0" />
+         </font>
+      </Label>
+      <Label alignment="CENTER" contentDisplay="CENTER" layoutX="502.0" layoutY="421.0" text="Prepared by Lukasz Tracz" textAlignment="CENTER" textFill="WHITE" AnchorPane.bottomAnchor="14.0" AnchorPane.leftAnchor="502.0" AnchorPane.rightAnchor="32.0" AnchorPane.topAnchor="421.0">
+         <font>
+            <Font size="15.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
