@@ -20,27 +20,17 @@ import lukasztracz195.barnpjee.chat.client.data.Room;
 import lukasztracz195.barnpjee.chat.client.model.service.impl.RefresherMessageListScheduledService;
 import lukasztracz195.barnpjee.chat.client.model.service.impl.RefresherRoomListScheduledService;
 import lukasztracz195.barnpjee.chat.client.model.service.interfaces.LogInClientService;
-import lukasztracz195.barnpjee.chat.client.model.service.interfaces.RoomClientService;
 import lukasztracz195.barnpjee.chat.common.dto.Status;
-import lukasztracz195.barnpjee.chat.common.dto.request.CreateRoomRequest;
-import lukasztracz195.barnpjee.chat.common.dto.request.GetAllRoomsRequest;
-import lukasztracz195.barnpjee.chat.common.dto.request.LogOutRequest;
-import lukasztracz195.barnpjee.chat.common.dto.request.Result;
-import lukasztracz195.barnpjee.chat.common.dto.request.SendMessageRequest;
-import lukasztracz195.barnpjee.chat.common.dto.response.CreateRoomResponse;
-import lukasztracz195.barnpjee.chat.common.dto.response.GetAllRoomsResponse;
-import lukasztracz195.barnpjee.chat.common.dto.response.LogOutResponse;
+import lukasztracz195.barnpjee.chat.common.dto.request.basic.Result;
+import lukasztracz195.barnpjee.chat.common.dto.request.login.LogOutRequest;
+import lukasztracz195.barnpjee.chat.common.dto.response.login.LogOutResponse;
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.stream.Collectors;
 
 public class ChatController extends BasicController {
 
@@ -56,7 +46,6 @@ public class ChatController extends BasicController {
     @FXML
     Button sendMessageButton;
 
-    private RoomClientService roomClientService;
     private LogInClientService loginService;
     private LoggedUserData loggedUserData;
 
@@ -65,24 +54,21 @@ public class ChatController extends BasicController {
     private ObservableList<Message> messagesObservableList = FXCollections.observableArrayList();
     private RefresherMessageListScheduledService serviceForDownloadMessages;
     private RefresherRoomListScheduledService serviceForDownloadRooms;
+
     @Override
     public void initializeServices() {
         super.initializeServices();
         loginService = applicationContext.getBean(LogInClientService.class);
-        roomClientService = applicationContext.getBean(RoomClientService.class);
         loggedUserData = LoggedUserData.getInstance();
         setObservableListForView();
-        roomObservableList.addAll(getAllRoomsToRoomList());
         loggedUserData.setCurrentRoom(roomObservableList.get(0));
 
         serviceForDownloadMessages = RefresherMessageListScheduledService.builder()
-                .roomClientService(roomClientService)
                 .messagesObservableList(messagesObservableList)
                 .mapRoomsAndMessages(mapRoomsAndMessages)
                 .build();
 
         serviceForDownloadRooms = RefresherRoomListScheduledService.builder()
-                .roomClientService(roomClientService)
                 .roomObservableList(roomObservableList)
                 .mapRoomsAndMessages(mapRoomsAndMessages)
                 .build();
@@ -150,48 +136,30 @@ public class ChatController extends BasicController {
 
     @FXML
     public void sendMessage() {
-        final String contentOfMessage = textFieldOnMessage.getText();
-        if (!contentOfMessage.isEmpty() && loggedUserData.getCurrentRoom() != null) {
-            final Status status = roomClientService.sendMessage(SendMessageRequest.builder()
-                    .nick(loggedUserData.getNickOfLoggedUser())
-                    .message(contentOfMessage)
-                    .roomUuid(loggedUserData.getCurrentRoom().getUuid())
-                    .build());
-            if (status.equals(Status.OK)) {
-                messagesObservableList.add(Message.builder()
-                        .content(contentOfMessage)
-                        .nickOfCreator(loggedUserData.getNickOfLoggedUser())
-                        .timeOfCreation(LocalDateTime.now())
-                        .build());
-            } else {
-                prepareAlert(status);
-            }
-            textFieldOnMessage.clear();
-        }
     }
 
     @FXML
     public void addRoom() {
-        final TextInputDialog dialog = new TextInputDialog();
-        dialog.setTitle("Createn new room by name");
-        dialog.setHeaderText("Get name of room:");
-        dialog.initOwner(viewManager.getCurrentStage());
-        Platform.runLater(() -> {
-            Optional<String> response = dialog.showAndWait();
-            response.ifPresent(roomName -> {
-                final CreateRoomResponse createRoomResponse = roomClientService.createRoom(CreateRoomRequest.builder()
-                        .nameOfCreator(loggedUserData.getNickOfLoggedUser())
-                        .nameOfRoom(roomName)
-                        .build());
-                if (createRoomResponse.getStatus().equals(Status.OK)) {
-                    roomObservableList.add(Room.builder()
-                            .uuid(createRoomResponse.getRoomUuid())
-                            .name(createRoomResponse.getName())
-                            .build());
-                }
-            });
-
-        });
+//        final TextInputDialog dialog = new TextInputDialog();
+//        dialog.setTitle("Createn new room by name");
+//        dialog.setHeaderText("Get name of room:");
+//        dialog.initOwner(viewManager.getCurrentStage());
+//        Platform.runLater(() -> {
+//            Optional<String> response = dialog.showAndWait();
+//            response.ifPresent(roomName -> {
+////                final CreateRoomResponse createRoomResponse = roomClientService.createRoom(CreateRoomRequest.builder()
+////                        .nameOfCreator(loggedUserData.getNickOfLoggedUser())
+////                        .nameOfRoom(roomName)
+////                        .build());
+////                if (createRoomResponse.getStatus().equals(Status.OK)) {
+////                    roomObservableList.add(Room.builder()
+////                            .uuid(createRoomResponse.getRoomUuid())
+////                            .name(createRoomResponse.getName())
+////                            .build());
+//                }
+//            });
+//
+//        });
     }
 
     private void setObservableListForView() {
@@ -199,16 +167,16 @@ public class ChatController extends BasicController {
         listOfRooms.setItems(roomObservableList);
     }
 
-    private List<Room> getAllRoomsToRoomList() {
-        final GetAllRoomsResponse getAllRoomsResponse = roomClientService.getAllRooms(GetAllRoomsRequest.builder()
-                .nick(loggedUserData.getNickOfLoggedUser())
-                .build());
-
-        return getAllRoomsResponse.getRoomsResponses().stream().map(f -> Room.builder()
-                .uuid(f.getUuid())
-                .name(f.getNameOfRoom())
-                .build()).collect(Collectors.toList());
-    }
+//    private List<Room> getAllRoomsToRoomList() {
+//        final GetAllRoomsResponse getAllRoomsResponse = roomClientService.getAllRooms(GetAllRoomsRequest.builder()
+//                .nick(loggedUserData.getNickOfLoggedUser())
+//                .build());
+//
+//        return getAllRoomsResponse.getRoomsResponses().stream().map(f -> Room.builder()
+//                .uuid(f.getUuid())
+//                .name(f.getNameOfRoom())
+//                .build()).collect(Collectors.toList());
+//    }
 
     private Alert prepareAlert(Status status) {
         final Alert alert = new Alert(Alert.AlertType.ERROR);

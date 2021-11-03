@@ -4,11 +4,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>lukasztracz195</groupId>
-        <artifactId>barnpjee-room</artifactId>
+        <artifactId>barnpjee-game</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>barnpjee-room-client</artifactId>
+    <artifactId>barnpjee-game-client</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <properties>
@@ -115,7 +115,7 @@
         </dependency>
         <dependency>
             <groupId>lukasztracz195</groupId>
-            <artifactId>barnpjee-room-common</artifactId>
+            <artifactId>barnpjee-game-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
     </dependencies>

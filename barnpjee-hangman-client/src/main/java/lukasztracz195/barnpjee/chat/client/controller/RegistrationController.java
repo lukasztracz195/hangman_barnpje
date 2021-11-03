@@ -8,14 +8,12 @@ import javafx.scene.control.TextField;
 import lukasztracz195.barnpjee.chat.client.constans.FxmlViews;
 import lukasztracz195.barnpjee.chat.client.model.service.interfaces.RegisterClientService;
 import lukasztracz195.barnpjee.chat.common.dto.Status;
-import lukasztracz195.barnpjee.chat.common.dto.request.RegisterRequest;
-import lukasztracz195.barnpjee.chat.common.dto.request.Result;
-import lukasztracz195.barnpjee.chat.common.dto.response.RegisterResponse;
+import lukasztracz195.barnpjee.chat.common.dto.request.basic.Result;
+import lukasztracz195.barnpjee.chat.common.dto.request.registration.RegisterRequest;
+import lukasztracz195.barnpjee.chat.common.dto.response.registration.RegisterResponse;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Component
@@ -63,7 +61,7 @@ public class RegistrationController extends BasicController {
                     errorLabel.setText(mapStatusPerMessage.get(registerResponse.getStatus()));
                 }
             }
-        }else{
+        } else {
             errorLabel.setText(mapStatusPerMessage.get(resultOfRequestValidation.getStatus()));
         }
     }

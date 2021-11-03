@@ -1,6 +1,5 @@
 package lukasztracz195.barnpjee.chat.client.model.service.impl;
 
-import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.concurrent.ScheduledService;
 import javafx.concurrent.Task;
@@ -12,15 +11,9 @@ import lombok.Setter;
 import lukasztracz195.barnpjee.chat.client.data.LoggedUserData;
 import lukasztracz195.barnpjee.chat.client.data.Message;
 import lukasztracz195.barnpjee.chat.client.data.Room;
-import lukasztracz195.barnpjee.chat.client.model.service.interfaces.RoomClientService;
-import lukasztracz195.barnpjee.chat.common.dto.request.GetAllRoomsRequest;
-import lukasztracz195.barnpjee.chat.common.dto.request.GetMessagesRequest;
-import lukasztracz195.barnpjee.chat.common.dto.response.GetAllRoomsResponse;
-import lukasztracz195.barnpjee.chat.common.dto.response.GetMessagesResponse;
 import lukasztracz195.barnpjee.chat.common.dto.response.RoomResponse;
 import lukasztracz195.barnpjee.chat.common.json.LocalDataTimeConverter;
 
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,7 +29,6 @@ public class RefresherMessageListScheduledService extends ScheduledService<Integ
 
     private Map<Room, List<Message>> mapRoomsAndMessages;
     private ObservableList<Message> messagesObservableList;
-    private RoomClientService roomClientService;
     private Integer numberOfCall = 0;
     private final LoggedUserData loggedUserData = LoggedUserData.getInstance();
 
@@ -46,24 +38,7 @@ public class RefresherMessageListScheduledService extends ScheduledService<Integ
 
             @Override
             protected Integer call() throws Exception {
-                System.out.println("Start Messsage tread");
-                final Room currentRoom = loggedUserData.getCurrentRoom();
-                Platform.runLater(() -> {
-                    System.out.println("Start Messsage tread run later");
-                    getMessagesResponse(true).getRoomsResponses().stream()
-                            .filter(f -> f.getUuid().equals(currentRoom.getUuid()))
-                            .findFirst()
-                            .ifPresent(roomResponse -> prepareMessagesFromRoomResponse(roomResponse)
-                                    .forEach(message -> {
-                                        if (messagesObservableList.stream().noneMatch(f -> f.equals(message))) {
-                                            messagesObservableList.add(message);
-                                        }
-                                    }));
-                });
-                System.out.println("Stop Messsage tread run later");
-                numberOfCall++;
-                System.out.println("Stop Messsage tread");
-                return numberOfCall;
+                return 1;
             }
         };
     }
@@ -85,13 +60,5 @@ public class RefresherMessageListScheduledService extends ScheduledService<Integ
                         .nickOfCreator(f.getNick())
                         .timeOfCreation(f.getTime())
                         .build()).collect(Collectors.toList());
-    }
-
-    private GetMessagesResponse getMessagesResponse(boolean getAllMessages) {
-        return roomClientService.getMessages(GetMessagesRequest.builder()
-                .nick(loggedUserData.getNickOfLoggedUser())
-                .getAllMessages(getAllMessages)
-                .chatTimeMap(prepareRoomTimeMap(mapRoomsAndMessages))
-                .build());
     }
 }

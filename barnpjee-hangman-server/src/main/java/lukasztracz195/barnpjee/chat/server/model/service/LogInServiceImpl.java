@@ -2,16 +2,15 @@ package lukasztracz195.barnpjee.chat.server.model.service;
 
 import lombok.extern.slf4j.Slf4j;
 import lukasztracz195.barnpjee.chat.common.dto.Status;
-import lukasztracz195.barnpjee.chat.common.dto.request.LogInRequest;
-import lukasztracz195.barnpjee.chat.common.dto.request.LogOutRequest;
-import lukasztracz195.barnpjee.chat.common.dto.request.Result;
-import lukasztracz195.barnpjee.chat.common.dto.response.LogInResponse;
-import lukasztracz195.barnpjee.chat.common.dto.response.LogOutResponse;
+import lukasztracz195.barnpjee.chat.common.dto.request.login.LogInRequest;
+import lukasztracz195.barnpjee.chat.common.dto.request.login.LogOutRequest;
+import lukasztracz195.barnpjee.chat.common.dto.request.basic.Result;
+import lukasztracz195.barnpjee.chat.common.dto.response.login.LogInResponse;
+import lukasztracz195.barnpjee.chat.common.dto.response.login.LogOutResponse;
 import lukasztracz195.barnpjee.chat.common.interfaces.LogInService;
 import lukasztracz195.barnpjee.chat.common.json.JsonObjectConverter;
 import lukasztracz195.barnpjee.chat.server.model.repository.LoggedRepository;
 import lukasztracz195.barnpjee.chat.server.model.repository.UserRepository;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Slf4j
@@ -37,6 +36,7 @@ public class LogInServiceImpl implements LogInService {
         final LogInRequest logInRequest = converter.convertJsonToPOJO(logInRequestAsJson, LogInRequest.class);
         final Result result = logInRequest.validate();
         if (!result.isSuccess()) {
+
             return converter.convertPOJOToJson(LogInResponse.builder()
                     .status(result.getStatus())
                     .build());
@@ -63,7 +63,6 @@ public class LogInServiceImpl implements LogInService {
                     .build();
             return converter.convertPOJOToJson(logOutWithForbiddenDataResponse);
         }
-
         return userRepository.get(logOutRequest.getNick()).map(user -> {
             loggedRepository.remove(logOutRequest.getNick());
             return converter.convertPOJOToJson(

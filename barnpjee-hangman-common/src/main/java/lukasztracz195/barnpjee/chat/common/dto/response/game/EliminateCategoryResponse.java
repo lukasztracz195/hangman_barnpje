@@ -1,21 +1,20 @@
-package lukasztracz195.barnpjee.chat.common.dto.response;
-
+package lukasztracz195.barnpjee.chat.common.dto.response.game;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.ToString;
 import lukasztracz195.barnpjee.chat.common.dto.Status;
-import org.springframework.http.HttpStatus;
 
-import java.io.Serializable;
+import java.util.List;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
 @Builder
-@ToString
-public class LogInResponse {
+public class EliminateCategoryResponse {
     private Status status;
+    private List<String> categoryToElimination;
+    private boolean eliminationIsFinished;
+    private boolean canMove;
 }

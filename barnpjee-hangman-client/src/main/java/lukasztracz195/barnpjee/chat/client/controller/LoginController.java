@@ -7,18 +7,14 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import lukasztracz195.barnpjee.chat.client.constans.FxmlViews;
 import lukasztracz195.barnpjee.chat.client.data.LoggedUserData;
-import lukasztracz195.barnpjee.chat.client.model.entity.User;
 import lukasztracz195.barnpjee.chat.client.model.service.interfaces.LogInClientService;
 import lukasztracz195.barnpjee.chat.common.dto.Status;
-import lukasztracz195.barnpjee.chat.common.dto.request.LogInRequest;
-import lukasztracz195.barnpjee.chat.common.dto.request.Result;
-import lukasztracz195.barnpjee.chat.common.dto.response.LogInResponse;
-import org.springframework.beans.factory.annotation.Autowired;
+import lukasztracz195.barnpjee.chat.common.dto.request.basic.Result;
+import lukasztracz195.barnpjee.chat.common.dto.request.login.LogInRequest;
+import lukasztracz195.barnpjee.chat.common.dto.response.login.LogInResponse;
 import org.springframework.stereotype.Component;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 @Component

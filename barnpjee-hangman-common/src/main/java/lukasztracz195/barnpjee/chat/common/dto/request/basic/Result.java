@@ -1,4 +1,4 @@
-package lukasztracz195.barnpjee.chat.common.dto.request;
+package lukasztracz195.barnpjee.chat.common.dto.request.basic;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,11 +1,11 @@
 package lukasztracz195.barnpjee.chat.server;
 
-import lukasztracz195.barnpjee.chat.common.dto.request.LogInRequest;
-import lukasztracz195.barnpjee.chat.common.dto.request.LogOutRequest;
-import lukasztracz195.barnpjee.chat.common.dto.request.RegisterRequest;
-import lukasztracz195.barnpjee.chat.common.dto.response.LogInResponse;
-import lukasztracz195.barnpjee.chat.common.dto.response.LogOutResponse;
-import lukasztracz195.barnpjee.chat.common.dto.response.RegisterResponse;
+import lukasztracz195.barnpjee.chat.common.dto.request.login.LogInRequest;
+import lukasztracz195.barnpjee.chat.common.dto.request.login.LogOutRequest;
+import lukasztracz195.barnpjee.chat.common.dto.request.registration.RegisterRequest;
+import lukasztracz195.barnpjee.chat.common.dto.response.login.LogInResponse;
+import lukasztracz195.barnpjee.chat.common.dto.response.login.LogOutResponse;
+import lukasztracz195.barnpjee.chat.common.dto.response.registration.RegisterResponse;
 import lukasztracz195.barnpjee.chat.common.interfaces.LogInService;
 import lukasztracz195.barnpjee.chat.common.interfaces.RegisterService;
 import lukasztracz195.barnpjee.chat.common.json.JsonObjectConverter;

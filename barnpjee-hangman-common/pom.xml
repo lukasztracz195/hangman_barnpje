@@ -6,11 +6,11 @@
 
     <parent>
         <groupId>lukasztracz195</groupId>
-        <artifactId>barnpjee-room</artifactId>
+        <artifactId>barnpjee-game</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>barnpjee-room-common</artifactId>
+    <artifactId>barnpjee-game-common</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <dependencies>
@@ -51,6 +51,5 @@
             <groupId>org.springframework</groupId>
             <artifactId>spring-web</artifactId>
         </dependency>
-
     </dependencies>
 </project>

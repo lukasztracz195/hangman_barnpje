@@ -10,7 +10,7 @@ import java.util.concurrent.ConcurrentHashMap;
 @Repository
 public class InMemoryUserRepository implements UserRepository {
 
-    private Map<String, User> users = new ConcurrentHashMap<>();
+    private final Map<String, User> users = new ConcurrentHashMap<>();
 
     @Override
     public boolean exists(String nick) {

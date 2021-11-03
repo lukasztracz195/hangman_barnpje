@@ -5,10 +5,6 @@ import lukasztracz195.barnpjee.chat.client.aplication.ViewManager;
 import lukasztracz195.barnpjee.chat.client.model.entity.User;
 import lukasztracz195.barnpjee.chat.client.model.service.interfaces.ServiceInitialize;
 import org.springframework.context.ConfigurableApplicationContext;
-import org.springframework.http.HttpStatus;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public abstract class BasicController implements ApplicationContextManager, ServiceInitialize {
 
@@ -37,7 +33,7 @@ public abstract class BasicController implements ApplicationContextManager, Serv
         viewManager.switchView(nameOfView);
     }
 
-    private void setResolutionOfView(){
+    private void setResolutionOfView() {
         viewManager.getCurrentStage().setResizable(false);
     }
 }

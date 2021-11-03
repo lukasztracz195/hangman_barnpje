@@ -5,11 +5,11 @@
 
     <parent>
         <groupId>lukasztracz195</groupId>
-        <artifactId>barnpjee-room</artifactId>
+        <artifactId>barnpjee-game</artifactId>
         <version>0.0.1-SNAPSHOT</version>
     </parent>
 
-    <artifactId>barnpjee-room-server</artifactId>
+    <artifactId>barnpjee-game-server</artifactId>
     <version>0.0.1-SNAPSHOT</version>
 
     <dependencies>
@@ -27,11 +27,6 @@
             <groupId>com.caucho</groupId>
             <artifactId>hessian</artifactId>
             <version>4.0.65</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.uuid</groupId>
-            <artifactId>java-uuid-generator</artifactId>
-            <version>3.1.0</version>
         </dependency>
         <dependency>
             <groupId>com.fasterxml.uuid</groupId>
@@ -61,7 +56,7 @@
         </dependency>
         <dependency>
             <groupId>lukasztracz195</groupId>
-            <artifactId>barnpjee-room-common</artifactId>
+            <artifactId>barnpjee-game-common</artifactId>
             <version>0.0.1-SNAPSHOT</version>
         </dependency>
         <dependency>
@@ -69,6 +64,15 @@
             <artifactId>lombok</artifactId>
             <version>1.18.16</version>
             <scope>provided</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 

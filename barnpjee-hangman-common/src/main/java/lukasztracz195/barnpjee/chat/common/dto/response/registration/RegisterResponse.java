@@ -1,4 +1,4 @@
-package lukasztracz195.barnpjee.chat.common.dto.response;
+package lukasztracz195.barnpjee.chat.common.dto.response.registration;
 
 import lombok.*;
 import lukasztracz195.barnpjee.chat.common.dto.Status;

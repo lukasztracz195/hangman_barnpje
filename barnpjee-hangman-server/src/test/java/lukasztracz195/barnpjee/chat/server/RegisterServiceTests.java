@@ -1,8 +1,7 @@
 package lukasztracz195.barnpjee.chat.server;
 
 import lukasztracz195.barnpjee.chat.common.dto.Status;
-import lukasztracz195.barnpjee.chat.common.dto.request.RegisterRequest;
-import lukasztracz195.barnpjee.chat.common.dto.response.RegisterResponse;
+import lukasztracz195.barnpjee.chat.common.dto.response.registration.RegisterResponse;
 import lukasztracz195.barnpjee.chat.common.interfaces.LogInService;
 import lukasztracz195.barnpjee.chat.common.interfaces.RegisterService;
 import lukasztracz195.barnpjee.chat.common.json.JsonObjectConverter;
@@ -10,9 +9,6 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.http.HttpStatus;
-
-import java.util.UUID;
 
 @SpringBootTest
 class RegisterServiceTests {

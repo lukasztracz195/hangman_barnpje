@@ -1,4 +1,4 @@
-package lukasztracz195.barnpjee.chat.common.dto.request;
+package lukasztracz195.barnpjee.chat.common.dto.request.registration;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 import lukasztracz195.barnpjee.chat.common.dto.Status;
+import lukasztracz195.barnpjee.chat.common.dto.request.basic.Request;
+import lukasztracz195.barnpjee.chat.common.dto.request.basic.Result;
 
 @NoArgsConstructor
 @AllArgsConstructor

@@ -1,8 +1,8 @@
 package lukasztracz195.barnpjee.chat.server;
 
 import lukasztracz195.barnpjee.chat.common.dto.Status;
-import lukasztracz195.barnpjee.chat.common.dto.response.LogInResponse;
-import lukasztracz195.barnpjee.chat.common.dto.response.LogOutResponse;
+import lukasztracz195.barnpjee.chat.common.dto.response.login.LogInResponse;
+import lukasztracz195.barnpjee.chat.common.dto.response.login.LogOutResponse;
 import lukasztracz195.barnpjee.chat.common.interfaces.LogInService;
 import lukasztracz195.barnpjee.chat.common.interfaces.RegisterService;
 import lukasztracz195.barnpjee.chat.common.json.JsonObjectConverter;

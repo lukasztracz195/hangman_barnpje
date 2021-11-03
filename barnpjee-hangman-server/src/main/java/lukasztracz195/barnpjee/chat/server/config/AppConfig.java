@@ -4,7 +4,7 @@ package lukasztracz195.barnpjee.chat.server.config;
 import lukasztracz195.barnpjee.chat.common.constant.UrlService;
 import lukasztracz195.barnpjee.chat.common.interfaces.LogInService;
 import lukasztracz195.barnpjee.chat.common.interfaces.RegisterService;
-import lukasztracz195.barnpjee.chat.common.interfaces.RoomService;
+import lukasztracz195.barnpjee.chat.common.interfaces.GameService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.remoting.caucho.HessianServiceExporter;
@@ -15,9 +15,9 @@ public class AppConfig {
 
     private final RegisterService registerService;
     private final LogInService logInService;
-    private final RoomService roomService;
+    private final GameService roomService;
 
-    public AppConfig(RegisterService registerService, LogInService logInService, RoomService roomService) {
+    public AppConfig(RegisterService registerService, LogInService logInService, GameService roomService) {
         this.registerService = registerService;
         this.logInService = logInService;
         this.roomService = roomService;
@@ -43,7 +43,7 @@ public class AppConfig {
     RemoteExporter getRoomService() {
         HessianServiceExporter exporter = new HessianServiceExporter();
         exporter.setService(roomService);
-        exporter.setServiceInterface(RoomService.class);
+        exporter.setServiceInterface(GameService.class);
         return exporter;
     }
 }

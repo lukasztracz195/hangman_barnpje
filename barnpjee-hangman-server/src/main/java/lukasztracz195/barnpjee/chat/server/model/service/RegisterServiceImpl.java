@@ -2,16 +2,15 @@ package lukasztracz195.barnpjee.chat.server.model.service;
 
 import lombok.extern.slf4j.Slf4j;
 import lukasztracz195.barnpjee.chat.common.dto.Status;
-import lukasztracz195.barnpjee.chat.common.dto.request.RegisterRequest;
-import lukasztracz195.barnpjee.chat.common.dto.request.Result;
-import lukasztracz195.barnpjee.chat.common.dto.response.RegisterResponse;
+import lukasztracz195.barnpjee.chat.common.dto.request.registration.RegisterRequest;
+import lukasztracz195.barnpjee.chat.common.dto.request.basic.Result;
+import lukasztracz195.barnpjee.chat.common.dto.response.registration.RegisterResponse;
 import lukasztracz195.barnpjee.chat.common.interfaces.RegisterService;
 import lukasztracz195.barnpjee.chat.common.json.JsonObjectConverter;
 import lukasztracz195.barnpjee.chat.server.model.entity.User;
 import lukasztracz195.barnpjee.chat.server.model.repository.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Service;
 
 @Slf4j

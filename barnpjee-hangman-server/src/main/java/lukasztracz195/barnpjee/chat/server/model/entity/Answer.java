@@ -4,18 +4,17 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lukasztracz195.barnpjee.chat.server.constant.AnswerType;
 
-import java.io.Serializable;
-import java.util.List;
 import java.util.UUID;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder(toBuilder = true)
-public class User implements Serializable {
-
-    private String nick;
-
-    private String password;
+public class Answer {
+    private User owner;
+    private String content;
+    private UUID uuidOfGame;
+    private AnswerType verdict;
 }

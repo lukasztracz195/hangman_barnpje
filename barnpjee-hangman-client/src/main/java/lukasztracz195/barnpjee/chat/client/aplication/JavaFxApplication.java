@@ -11,7 +11,7 @@ import lukasztracz195.barnpjee.chat.client.constans.FxmlViews;
 import lukasztracz195.barnpjee.chat.client.controller.BasicController;
 import lukasztracz195.barnpjee.chat.client.data.LoggedUserData;
 import lukasztracz195.barnpjee.chat.client.model.service.interfaces.LogInClientService;
-import lukasztracz195.barnpjee.chat.common.dto.request.LogOutRequest;
+import lukasztracz195.barnpjee.chat.common.dto.request.login.LogOutRequest;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.builder.SpringApplicationBuilder;
 import org.springframework.context.ConfigurableApplicationContext;
